@@ -1,7 +1,3 @@
-<html>
-	<body>
-		<h1>Online-Judge</h1>
-		<p>Developing my own version of code judging system.<p>
+#Online Judge
+Developing my own version of code judging system.
 		
-	</body>
-</html>
