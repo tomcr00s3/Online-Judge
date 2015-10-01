@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Online Judge:Work Outs</title>
+        <title>Online Judge: Password Reset</title>
          <link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
  
     <link href="/assets/application-591e50693ebb37a9ae65f14eb4cbc66d.css" media="all" rel="stylesheet" type="text/css" />
@@ -10,31 +10,30 @@
       <link href="/assets/favicon-53da3c47253e433d6c8d58337e7fb8ef.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
   
   <link href='http://fonts.googleapis.com/css?family=Cabin|Open+Sans' rel='stylesheet' type='text/css'>  
-      <link rel="stylesheet" href="../css/stylesheet.css">
+      <link rel="stylesheet" href="../../css/stylesheet.css">
     </head>
     <body>
         <div class = 'navbar navbar-default'>
             <div class = 'container'>
-                <a href = '../html/LoginPage.html' class = 'navbar-brand navbar-logo'>
-                    <img alt = 'OnlineJudge logo' height="38" src = "../assets/OnlineJudge_Logo" width="150"/>
-                    
+                <a href = '../../html/LoginPage.html' class = 'navbar-brand navbar-logo'>
+                    <img alt = 'Online Judge' height="38" src = '../../assets/OnlineJudge_Logo' width = '150'/>
                 </a>
                 <ul class = 'nav navbar-nav'>
-                    <li class = 'active'>
-                        <a href = '../html/work-outs.html'>Work Outs</a>
+                    <li class = ''>
+                        <a href = '../../html/work-outs.html'>Work Outs</a>
                     </li>
                     <li class = ''>
-                        <a href = '../html/problems.html'>Problems</a>
+                        <a href = '../../html/problems.html'>Problems</a>
                     </li>
                     <li class = ''>
-                        <a href = '../html/videos.html'>Videos</a>
+                        <a href  = '../../html/videos.html'>Videos</a>
                     </li>
                 </ul>
                 <div class = 'navbar-right'>
-                    <a href = '../users/sign_in.html' class = 'btn btn-xs navbar-btn btn-default'>Sign in</a>
-                    <a href="../users/sign_up.html" class="btn btn-xs navbar-btn btn-default">Sign up</a>
+                    <a href = "../../users/sign_in.html" class = "btn btn-xs navbar-btn btn-default">Sign In</a>
+                    <a href = "../../users/sign_up.html" class ="btn btn-xs navbar-btn btn-default">Sign Up</a> 
                 </div>
-                 <form ng-controller='SearchBoxController' class='navbar-form pull-right search-box dropdown'>
+                <form ng-controller='SearchBoxController' class='navbar-form pull-right search-box dropdown'>
         <div class='input-group'>
           <span class='input-group-addon'><i class="fa fa-search"></i></span>
           <input class='form-control' type='text'
@@ -72,30 +71,55 @@
       </form>
             </div>
         </div>
-        <div class = 'container body-div'>
-            <div class='row'>
-  <div class='col-lg-8'>
-    <div class='alert alert-success'>
-      <strong>Build those coding muscles!</strong>
-      Work outs are a combination of videos and problems compiled by us to help you practice a single topic.
+        <div class='container body-div'>
+    
+    
+
+<h2>Forgot your password?</h2>
+<hr />
+
+<div class="row"><div class="col-lg-8">
+<form accept-charset="UTF-8" action="/users/password" class="new_user form-horizontal" id="new_user" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="a0HNdT6U4zxYOPim3SQvNsfpEB5tS2qTr85Fihp0JyU=" /></div>
+
+      <div class="form-group">
+      <label class="col-lg-4 control-label" for="user_email">Email</label>
+      <div class="col-lg-8">
+        <input class="form-control" id="user_email" name="user[email]" size="30" type="email" value="" />
+      </div>
+    </div>
+
+
+  <div class="form-group">
+    <div class="col-lg-8 col-lg-offset-4">
+      <input class="btn btn-primary btn-lg" name="commit" type="submit" value="Send me reset password instructions" />
     </div>
   </div>
-</div>
-            <h2>Recommended Work Out</h2>
-            <div class = 'row'>
-                <div class = 'col-lg-3'>
-                </div>
-                <div class = 'col-lg-5'>
-                    <p class = 'lead'>
-                        <a href = '../html/work-outs.html/reading-input-and-writing-output'>Reading input and writing output</a>
-                    </p>
-                    <span title = 'This work out contains 0 video tutorials'>
-                    <i class = 'fa fa-video-camera'></i>&nbsp;
-                        0
-                    </span><br/>
-                    <span></span>
-                </div>
-            </div>
+</form>
+  <a href="../../users/sign_in">Sign in</a><br />
+
+  <a href="../../users/sign_up">Sign up</a><br />
+
+
+
+
+
+</div></div>
+
+  </div>
+  <div class='footer'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-lg-6'>
+          <small>
+            <a href="/about">About</a> |
+            <a href="http://blog.mycodeschool.com">Blog</a>
+          </small>
         </div>
+        <div class='col-lg-6 text-right'>
+          <small class='text-muted'>All rights reserved &copy; 2015 Online Judge</small>
+        </div>
+      </div>
+    </div>
+  </div>
     </body>
 </html>
