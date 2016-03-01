@@ -22,8 +22,8 @@
     <?php
       // get the name, email and status
       $query = "SELECT email, status FROM users WHERE username='".$_GET['uname']."'";
-      $result = mysql_query($query);
-      $row = mysql_fetch_array($result);
+      $result = mysqli_query($query);
+      $row = mysqli_fetch_array($result);
     ?>
     <h1><small>Profile details for <?php echo($_GET['uname']); if($row['status'] == 0) echo(" <span class=\"label label-important\">Banned</span>");?></small></h1>
     Email: <?php echo($row['email']);?>
@@ -39,12 +39,12 @@
       <?php
         // list all the problems attempted or solved
         $query = "SELECT problem_id, status, attempts FROM solve WHERE username='".$_GET['uname']."'";
-        $result = mysql_query($query);
-       	while($row = mysql_fetch_array($result)) {
+        $result = mysqli_query($query);
+       	while($row = mysqli_fetch_array($result)) {
        		$sql = "SELECT name FROM problems WHERE sl=".$row['problem_id'];
-       		$res = mysql_query($sql);
-       		if(mysql_num_rows($res) != 0) {
-       			$field = mysql_fetch_array($res);
+       		$res = mysqli_query($sql);
+       		if(mysqli_num_rows($res) != 0) {
+       			$field = mysqli_fetch_array($res);
 	       		echo("<tr><td><a href=\"#\" onclick=\"$('#area').load('preview.php', {action: 'code', uname: '".$_GET['uname']."', id: '".$row['problem_id']."', name: '".$field['name']."'});\">".$field['name']."</a></td><td><span class=\"badge badge-info\">".$row['attempts']);
        			if($row['status'] == 1)
        				echo("</span></td><td><span class=\"label label-warning\">Attempted</span></td></tr>\n");

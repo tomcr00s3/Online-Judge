@@ -30,12 +30,12 @@
       <?php
         // list all the submissions made by the user
         $query = "SELECT problem_id, status, attempts FROM solve WHERE username='".$_SESSION['username']."'";
-        $result = mysql_query($query);
-       	while($row = mysql_fetch_array($result)) {
+        $result = mysqli_query($query);
+       	while($row = mysqli_fetch_array($result)) {
        		$sql = "SELECT name FROM problems WHERE sl=".$row['problem_id'];
-       		$res = mysql_query($sql);
-       		if(mysql_num_rows($res) != 0) {
-       			$field = mysql_fetch_array($res);
+       		$res = mysqli_query($sql);
+       		if(mysqli_num_rows($res) != 0) {
+       			$field = mysqli_fetch_array($res);
 	       		echo("<tr><td><a href=\"solve.php?id=".$row['problem_id']."\">".$field['name']."</a></td><td><span class=\"badge badge-info\">".$row['attempts']);
        			if($row['status'] == 1)
        				echo("</span></td><td><span class=\"label label-warning\">Attempted</span></td></tr>\n");

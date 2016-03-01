@@ -41,11 +41,11 @@
             	<?php
             	  // list all the problems
             	  $query = "SELECT * FROM problems";
-          	  $result = mysql_query($query);
+          	  $result = mysqli_query($query);
           	  if(mysql_num_rows($result)==0)
           	    echo("<li>None</li>\n");
           	  else {
-          	    while($row = mysql_fetch_array($result)) {
+          	    while($row = mysqli_fetch_array($result)) {
           	      if(isset($_GET['action']) and $_GET['action']=='edit' and isset($_GET['id']) and $_GET['id']==$row['sl']) {
           	        $selected = $row;
           	        echo("<li class=\"active\"><a href=\"problems.php?action=edit&id=".$row['sl']."\">".$row['name']."</a></li>\n");
@@ -78,7 +78,8 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab1">
-          Problem Title: <input style="width:700px;" type="text" id="title" name="title" value="<?php echo($selected['name']);?>"/><br/>
+          Problem Title: <input class="span8" type="text" id="title" name="title" value="<?php echo($selected['name']);?>"/><br/>
+          Maximum Points: <input class="span2" type="text" id="points" name="points" value="<?php echo($selected['points']);?>"/><br/>
           <div class="controls">
             <div class="input-append">
               Time Limit: <input class="span2" id="appendedInput" size="8" type="text" name="time" value="<?php echo($selected['time']); ?>"><span class="add-on">ms</span>
@@ -113,6 +114,8 @@
           <div class="tab-content">
             <div class="tab-pane active" id="tab1">
           Problem Title: <input class="span8" type="text" id="title" name="title"/><br/>
+          Maximum Points: <input class="span2" type="text" id="points" name="points"/><br/>
+
           <div class="controls">
             <div class="input-append">
               Time Limit: <input class="span2" id="appendedInput" size="8" type="text" name="time"><span class="add-on">ms</span>

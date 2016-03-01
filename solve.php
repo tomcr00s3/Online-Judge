@@ -31,15 +31,13 @@
           echo("<div class=\"alert alert-error\">\nCould not connect to the compiler server. Please contact the admin to solve the problem.\n</div>");
         else if(isset($_GET['derror']))
           echo("<div class=\"alert alert-error\">\nPlease enter all the details asked before you can continue!\n</div>");
-        else if(isset($_GET['ferror']))
-          echo("<div class=\"alert alert-error\">\nPlease enter a legal filename.\n</div>");
           
         $query = "SELECT * FROM prefs";
-        $result = mysql_query($query);
-        $accept = mysql_fetch_array($result);
+        $result = mysqli_query($query);
+        $accept = mysqli_fetch_array($result);
         $query = "SELECT status FROM users WHERE username='".$_SESSION['username']."'";
-        $result = mysql_query($query);
-        $status = mysql_fetch_array($result);
+        $result = mysqli_query($query);
+        $status = mysqli_fetch_array($result);
         if($accept['accept'] == 0)
           echo("<div class=\"alert alert-error\">\nSubmissions are closed now!\n</div>");
         if($status['status'] == 0)
@@ -50,8 +48,8 @@
         // display the problem statement
       	if(isset($_GET['id']) and is_numeric($_GET['id'])) {
       		$query = "SELECT * FROM problems WHERE sl='".$_GET['id']."'";
-          	$result = mysql_query($query);
-          	$row = mysql_fetch_array($result);
+          	$result = mysqli_query($query);
+          	$row = mysqli_fetch_array($result);
       		include('markdown.php');
 		$out = Markdown($row['text']);
 		echo("<hr/>\n<h1>".$row['name']."</h1>\n");
@@ -63,9 +61,9 @@
         // get the peviously submitted solution if exists
         if(is_numeric($_GET['id'])) {
           $query = "SELECT * FROM solve WHERE (problem_id='".$_GET['id']."' AND username='".$_SESSION['username']."')";
-          $result = mysql_query($query);
-          $num = mysql_num_rows($result);
-          $fields = mysql_fetch_array($result);
+          $result = mysqli_query($query);
+          $num = mysqli_num_rows($result);
+          $fields = mysqli_fetch_array($result);
         }
       ?>
       <form method="post" action="eval.php">
@@ -94,10 +92,9 @@
           <li><a href="#" onclick="changeLang('Python');">Python</a></li>
         </ul>
       </div>
-      <br/>
-      Filename: <input class="span8" type="text" id="filename" name="filename" value="<?php if(!($num == 0)) echo($fields['filename']);?>"/>
+      
       <br/>Type your program below:<br/><br/>
-      <textarea style="font-family: mono; height:400px;" class="span9" name="soln" id="text"><?php if(!($num == 0)) echo($fields['soln']);?></textarea><br/>
+       <textarea style="font-family: mono; height:400px;" class="span9" name="soln" id="text"><?php if(!($num == 0)) echo($fields['soln']); else echo "// For Java users : Name your class 'Solution'";?></textarea><br/>
       <?php if($accept['accept'] == 1 and $status['status'] == 1) echo("<input type=\"submit\" value=\"Run\" class=\"btn btn-primary btn-large\"/>");
             else echo("<input type=\"submit\" value=\"Run\" class=\"btn disabled btn-large\" disabled=\"disabled\"/>");
       ?>

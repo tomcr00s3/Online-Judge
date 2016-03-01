@@ -10,8 +10,8 @@ function loggedin() {
 // connects to the database
 function connectdb() {
   include('dbinfo.php');
-  mysql_connect($host,$user,$password);
-  mysql_select_db($database) or die('Error connecting to database.');
+  mysqli_connect($host,$user,$password);
+  mysqli_select_db($database) or die('Error connecting to database.');
 }
 
 // generates a random alpha numeric sequence. Used to generate salt
@@ -27,8 +27,8 @@ function randomAlphaNum($length){
 function getName(){
   connectdb();
   $query="SELECT name FROM prefs";
-  $result = mysql_query($query);
-  $row = mysql_fetch_array($result);
+  $result = mysqli_query($query);
+  $row = mysqli_fetch_array($result);
   return $row['name'];
 }
 

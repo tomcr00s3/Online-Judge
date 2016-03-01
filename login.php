@@ -1,56 +1,70 @@
+<!--Problem while user registration. Probably problem in sql query for insert. Username not visible in mysql table. -->
+    <!--
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //Get the code from sankha and check for different possiblities of insert query. Check if each possibilty works
+      //Probably there might be syntax problem. If each possibility fails check for simple code on user registration.
+      //If everything fails then check for the code for last pull request. 
+      //Otherwise there might be problem with my PC.
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+
 <?php
 
+  error_reporting(1); //sets which PHP errors are reported
+  //reports all PHP errors.
+
+
 	require_once('functions.php');
-	
-  if(loggedin())
-		header("Location: index.php");
-	else if(isset($_POST['action'])) {
-		$username = mysql_real_escape_string($_POST['username']);
-		if($_POST['action']=='login') {
-			//if(trim($username) == "" or trim($_POST['password']) == "")
-			//	header("Location: login.php?derror=1"); // empty entry
-			//else {
-				// code to login the user and start a session
-				connectdb();
-				$query = "SELECT salt,hash FROM users WHERE username='".$username."'";
-				$result = mysql_query($query);
-				$fields = mysql_fetch_array($result);
-				$currhash = crypt($_POST['password'], $fields['salt']);
-				if($currhash == $fields['hash']) {
-					$_SESSION['username'] = $username;
-					header("Location: index.php");
-				} else
-					header("Location: login.php?error=1");
-			//}
-		} 
-    else if($_POST['action']=='register') {
-			// register the user
-			$email = mysql_real_escape_string($_POST['email']);
-			//if(trim($username) == "" or trim($_POST['password']) == "" or trim($email) == "")
-			//	header("Location: login.php?derror=1"); // empty entry
-			//else {
-				// create the entry in the users table
-				connectdb();
-			//query = "SELECT salt,hash FROM users WHERE username='".$username."'";
-			//result = mysql_query($query);
-				if(mysql_num_rows($result)!=0)
-					header("Location: login.php?exists=1");
-				else {
-					$salt = randomAlphaNum(5);
-					$hash = crypt($_POST['password'], $salt);
-					$sql="INSERT INTO `users` ( `username` , `salt` , `hash` , `email` ) VALUES ('".$username."', '$salt', '$hash', '".$email."')";
-					mysql_query($sql);
-					header("Location: login.php?registered=1");
-				}
-			//}
-		}
-	}
+    if(loggedin())
+      header("Location: index.php");
+  else if(isset($_POST['action'])) {
+    $username = mysql_real_escape_string($_POST['username']);
+    if($_POST['action']=='login') {
+      if(trim($username) == "" or trim($_POST['password']) == "")
+        header("Location: login.php?derror=1"); // empty entry
+        else {
+          // code to login the user and start a session
+          connectdb();
+         $query = "SELECT salt,hash FROM users WHERE username='".$username."'";
+         $query = "SELECT salt,hash FROM users WHERE username=".$username;
+          $result = mysql_query($query);
+          $fields = mysql_fetch_array($result);
+          $currhash = crypt($_POST['password'], $fields['salt']);
+        if($currhash == $fields['hash']) {
+          $_SESSION['username'] = $username;
+          header("Location: index.php");
+        } else
+          header("Location: login.php?error=1");
+      }
+    } else if($_POST['action']=='register') {
+      // register the user
+      $email = mysql_real_escape_string($_POST['email']);
+      if(trim($username) == "" or trim($_POST['password']) == "" or trim($email) == "")
+        header("Location: login.php?derror=1"); // empty entry
+        else {
+          // create the entry in the users table
+          connectdb();
+         $query = "SELECT salt,hash FROM users WHERE username='".$username."'";
+         $query = "SELECT salt,hash FROM users WHERE username=".$username;
+          $result = mysql_query($query);
+          if(mysql_num_rows($result)!=0)
+            header("Location: login.php?exists=1");
+        else {
+          $salt = randomAlphaNum(5);
+          $hash = crypt($_POST['password'], $salt);
+          $sql="INSERT INTO `users` ( `username` , `salt` , `hash` , `email` ) VALUES ('".$username."', '$salt', '$hash', '".$email."')";
+          mysql_query($sql);
+          header("Location: login.php?registered=1");
+        }
+      }
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title><?php echo(getName()); ?> Login</title>
+    <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -143,7 +157,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#"><?php echo(getName()); ?></a>
+          <a class="brand" href="#">Welcome to OnlineJudge</a>
         </div>
       </div>
     </div>

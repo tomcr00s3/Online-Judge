@@ -15,9 +15,9 @@
 		include('../functions.php');
 		connectdb();
 		echo("<hr/><h1><small>".$_POST['name']."</small></h1>\n");
-		$query = "SELECT filename, soln FROM solve WHERE (username='".mysql_real_escape_string($_POST['uname'])."' AND problem_id='".$_POST['id']."')";
-		$result = mysql_query($query);
-		$row = mysql_fetch_array($result);
+		$query = "SELECT filename, soln FROM solve WHERE (username='".mysqli_real_escape_string($_POST['uname'])."' AND problem_id='".$_POST['id']."')";
+		$result = mysqli_query($query);
+		$row = mysqli_fetch_array($result);
 		$str = str_replace("<", "&lt;", $row['soln']);
 		echo("<strong>".$row['filename']."</strong><br/><br/>\n<pre>".str_replace(">", "&gt;", $str)."</pre>");
 	}

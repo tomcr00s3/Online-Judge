@@ -31,14 +31,15 @@
       <ul class="nav nav-tabs">
         <li class="active"><a href="#">General</a></li>
         <li><a href="problems.php">Problems</a></li>
+        <li><a href="scoring.php">Scoring</a></li>
       </ul>
       <div>
         <div>
           <form method="post" action="update.php">
           <?php
           	$query = "SELECT name, accept, c, cpp, java, python FROM prefs";
-          	$result = mysql_query($query);
-          	$fields = mysql_fetch_array($result);
+          	$result = mysqli_query($query);
+          	$fields = mysqli_fetch_array($result);
           ?>
           <input type="hidden" name="action" value="settings"/>
           Name of event: <input name="name" type="text" value="<?php echo($fields['name']);?>"/><br/>
@@ -66,8 +67,8 @@
           <h1><small>Change Email</small></h1>
           <?php
           	$query = "SELECT email FROM users WHERE username='admin'";
-          	$result = mysql_query($query);
-          	$fields = mysql_fetch_array($result);
+          	$result = mysqli_query($query);
+          	$fields = mysqli_fetch_array($result);
           ?>
           Email: <input type="email" name="email" value="<?php echo $fields['email'];?>"/><br/><br/>
           <input class="btn" type="submit" name="submit" value="Change Email"/>

@@ -10,8 +10,8 @@
 			// code to login the user and start a session
 			connectdb();
 			$query = "SELECT salt,hash FROM users WHERE username='admin'";
-			$result = mysql_query($query);
-			$fields = mysql_fetch_array($result);
+			$result = mysqli_query($query);
+			$fields = mysqli_fetch_array($result);
 			$currhash = crypt($_POST['password'], $fields['salt']);
 			if($currhash == $fields['hash']) {
 				$_SESSION['username'] = "admin";

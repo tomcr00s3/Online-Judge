@@ -6,7 +6,7 @@ include('functions.php');
 		if(trim($_POST['email']) == "")
 			header("Location: account.php?derror=1");
 		else {
-			mysql_query("UPDATE users SET email='".mysql_real_escape_string($_POST['email'])."' WHERE username='".$_SESSION['username']."'");
+			mysqli_query("UPDATE users SET email='".mysql_real_escape_string($_POST['email'])."' WHERE username='".$_SESSION['username']."'");
 			header("Location: account.php?changed=1");
 		}
 	} else if($_POST['action']=='password') {
@@ -21,7 +21,7 @@ include('functions.php');
 			if($currhash == $fields['hash']) {
 				$salt = randomAlphaNum(5);
 				$newhash = crypt($_POST['newpass'], $salt);
-				mysql_query("UPDATE users SET hash='$newhash', salt='$salt' WHERE username='".$_SESSION['username']."'");
+				mysqli_query("UPDATE users SET hash='$newhash', salt='$salt' WHERE username='".$_SESSION['username']."'");
 				header("Location: account.php?changed=1");
 			} else
 				header("Location: account.php?passerror=1");

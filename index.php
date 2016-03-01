@@ -29,17 +29,17 @@
         <?php
         	// list all the problems from the database
         	$query = "SELECT * FROM problems";
-          	$result = mysql_query($query);
+          	$result = mysqli_query($query);
           	if(mysql_num_rows($result)==0)
 			echo("<li>None</li>\n"); // no problems are there
 		else {
-			while($row = mysql_fetch_array($result)) {
+			while($row = mysqli_fetch_array($result)) {
 				$sql = "SELECT status FROM solve WHERE (username='".$_SESSION['username']."' AND problem_id='".$row['sl']."')";
-				$res = mysql_query($sql);
+				$res = mysqli_query($sql);
 				$tag = "";
 				// decide the attempted or solve tag
 				if(mysql_num_rows($res) !== 0) {
-					$r = mysql_fetch_array($res);
+					$r = mysqli_fetch_array($res);
 					if($r['status'] == 1)
 						$tag = " <span class=\"label label-warning\">Attempted</span>";
 					else if($r['status'] == 2)
@@ -68,8 +68,8 @@
       <?php
         // number of people who have solved the problem
         $query = "SELECT * FROM solve WHERE(status=2 AND problem_id='".$selected['sl']."')";
-        $result = mysql_query($query);
-        $num = mysql_num_rows($result);
+        $result = mysqli_query($query);
+        $num = mysqli_num_rows($result);
       ?>
       <input class="btn btn-primary btn-large" type="submit" value="Solve"/> <span class="badge badge-info"><?php echo($num);?></span> have solved the problem.
       </form>
